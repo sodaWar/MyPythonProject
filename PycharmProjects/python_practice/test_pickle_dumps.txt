@@ -1,0 +1,13 @@
+(dp0
+S'age'
+p1
+I20
+sS'name'
+p2
+S'Apple'
+p3
+sS'sex'
+p4
+S'man'
+p5
+s.
