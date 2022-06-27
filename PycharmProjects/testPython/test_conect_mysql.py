@@ -28,14 +28,14 @@ def selectdb(db):
             print ("查询结束，数据库无数据")
         else:
             for row in result:
-                print row
+                print (row)
                 id = row[0]
                 title = row[1]
                 content = row[2]
                 small_cover = row[3]
                 create_time = row[9]
-                print "id:%d,title:%s,content:%s,small_cover:%s,create_time:( %s)" \
-                      %(id,title,content,small_cover,create_time)
+                print ("id:%d,title:%s,content:%s,small_cover:%s,create_time:( %s)" \
+                      %(id,title,content,small_cover,create_time))
     except:
         print ("查询数据失败")
         #traceback.print_exc()
@@ -79,7 +79,7 @@ def batchdb(db):
         values = [i if x == i-1 else x for x in values]
        # print values
         values = [y if h == z else h for h in values]
-        print values
+        print (values)
         cursor.execute("insert into tag(id,name,status_flag) VALUES (%s,%s,%s)",[str(x) for x in values])
         db.commit()
 

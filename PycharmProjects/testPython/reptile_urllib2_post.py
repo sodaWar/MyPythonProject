@@ -1,5 +1,5 @@
 # coding=utf-8
-import urllib2
+import urllib.request
 import hashlib
 import json
 
@@ -11,7 +11,6 @@ values = {"identity": "893026755@qq.com", "type": 0, "password": password_encryp
 data = json.dumps(values)          #将输入的参数数据由字典格式转换为json格式
 url = "http://api.test.sokafootball.com:8092/register/email"
 headers = {"Content-Type" : "application/json"}     #第一种方式，其效果都是一样的
-request = urllib2.Request(url, data ,headers)
 #request.add_header("Content-Type","application/json")       #在请求接口时加入特定的header头部信息的第二种方式
-response = urllib2.urlopen(request)
-print response.read()
+response = urllib.request.urlopen(url, data ,headers)
+print(response.read())

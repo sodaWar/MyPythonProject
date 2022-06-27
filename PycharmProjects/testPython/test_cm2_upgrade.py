@@ -85,7 +85,7 @@ def main_1():
     result = True
     conn, cur = connDB()
     print ("请选择以上四个操作：1、查询记录 2、删除记录 3、更新记录 4、增加记录.(按Q退出程序)")
-    number = raw_input()
+    number = input()
     while (result):
         if (number == 'q' or number == 'Q'):
             print("退出程序中...")
@@ -97,7 +97,7 @@ def main_1():
             try:
                 selectDB(cur, id)
                 print ("查询成功")
-            except Exception, e:
+            except Exception:
                 traceback.print_exc()
             finally:
                 closeDB(conn,cur)
@@ -113,7 +113,7 @@ def main_1():
                 closeDB(conn,cur)
 
         elif (int(number) == 3):
-            name = raw_input("请输入更新的tag表名字：")
+            name = input("请输入更新的tag表名字：")
             id = input("请输入更新的tag表ID:")
             try:
                 updateDB(conn, cur, name, id)
@@ -123,7 +123,7 @@ def main_1():
             closeDB(conn,cur)
 
         elif (int(number) == 4):
-            sql = raw_input("请输入插入数据的sql语句:")
+            sql = input("请输入插入数据的sql语句:")
             try:
                 insertDB(conn, cur, sql)
                 print ("插入数据成功")
@@ -135,10 +135,10 @@ def main_1():
         else:
             print ("非法输入，将结束进程")
             closeDB(conn, cur)
-            print conn.open    #判断数据库连接状态
+            print (conn.open)    #判断数据库连接状态
             break
         print ("请选择以上四个操作：1、查询记录 2、删除记录 3、更新记录 4、增加记录.(按Q退出程序)")
-        number = raw_input("请选择操作")
+        number = input("请选择操作")
 
 
 if __name__ == "__main__":

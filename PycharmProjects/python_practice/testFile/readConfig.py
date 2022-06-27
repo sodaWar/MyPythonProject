@@ -6,6 +6,6 @@ cf.read("config.ini")                                                           
 
 def getDatabase(name):
     name = cf.get("DATABASE",name)
-    print name
+    print(name)
 
 getDatabase("DATABASE")

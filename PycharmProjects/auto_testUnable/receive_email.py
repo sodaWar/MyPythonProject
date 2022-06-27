@@ -22,9 +22,9 @@ def receiveEmail():
     print ('Message: %s  Size:%s' % server.stat())    #stat()返回邮件数量和每个邮件所占用的空间
 
     resp,mails,octets = server.list()       #list()返回所有邮件的编号和占用空间
-    print mails
+    print(mails)
     if len(mails) == 0:
-        print '邮箱为空，未收到邮件，请进入邮箱查看'
+        print('邮箱为空，未收到邮件，请进入邮箱查看')
     else:
         index = len(mails)          # 获取最新一封邮件, 注意索引号从1开始:
         for i in range(index):
@@ -56,13 +56,13 @@ def receiveEmail():
             # print "Content:",content
 
             if subject == 'SOKA FOOTBALL Verification code' and differ_time3 < 7200:
-                s = re.findall("\d+",content)[0]
+                s = re.findall("\d+", content)[0]
                 r.append(s)
             elif subject == 'SOKA FOOTBALL Verification code' and differ_time3 > 7200:
-                s = re.findall("\d+",content)[0]
+                s = re.findall("\d+", content)[0]
                 t.append(s)
             else:
-                print '该邮件不是SOKA FOOTBALL发送的验证码邮件'
-    return (r,t)
+                print('该邮件不是SOKA FOOTBALL发送的验证码邮件')
+    return (r, t)
 if __name__ == "__main__":
     receiveEmail()

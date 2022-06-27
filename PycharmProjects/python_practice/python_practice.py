@@ -2,7 +2,7 @@
 from math import sqrt
 from sys import stdout
 from collections import deque
-from Tkinter import *
+from tkinter import *
 import time
 import math
 import datetime
@@ -671,7 +671,7 @@ import turtle
 # drawline(4)
 # time.sleep(10)
 
-#使用rectangle画方形.画图可以使用TKinter和turtle模块,使用时再学习
+#使用rectangle画方形.画图可以使用tkinter和turtle模块,使用时再学习
 # if __name__ == '__main__':
 #     root = Tk()
 #     root.title('Canvas')

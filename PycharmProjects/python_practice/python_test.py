@@ -634,3 +634,6 @@ from io import BytesIO                                                  # 在内
 # input('please:')                                                      #用户在控制台输入信息
 # print("I'm %s. I'm %d year old" % ('Vamei', 99))                      #字符串格式化，%操作符的使用
 # print("I'm %(name)s. I'm %(age)d year old" % {'name':'Vamei', 'age':99})                          #使用词典来传递真实值的方式
+
+
+

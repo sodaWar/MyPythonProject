@@ -158,8 +158,8 @@ def show_matchIndex(cur):    #查询主页显示的比赛信息，并返回更�
     x = cur.fetchall()
     result1 = int(x[0][2])
     result2 = x[0][3]
-    print '主页显示的比赛ID：',
-    print result1
+    print ('主页显示的比赛ID：',)
+    print (result1)
 
     sql2 = "select * from `match` WHERE match_id = '%d'" % (result1)
     cur.execute(sql2)
@@ -170,10 +170,10 @@ def show_matchIndex(cur):    #查询主页显示的比赛信息，并返回更�
     d = y[0][20]
     result3 = [a, b, c, d]
     if result2 == 1:
-        print '该主页显示的比赛信息如下，请核对之:'
+        print ('该主页显示的比赛信息如下，请核对之:')
         return result3,1
     elif result2 == 0:
-        print '该比赛在主页显示的状态为停用，请核对之:'
+        print ('该比赛在主页显示的状态为停用，请核对之:')
         return result3, 0
     else:
         print ("数据库中该表的status字段值范围已做更改，请在数据库中查看确定")
@@ -210,7 +210,7 @@ def update_userSign(conn,cur,uid):                            #更改用户今�
             cur.execute(sql2)         #该sql语句中sign_count的判断条件很重要，这样就能根据每个连续签到的天数判断出不同的签到记录，从而进行不同的更新
             conn.commit()
         else:
-            print '今日没有签到'
+            print ('今日没有签到')
 
 def delete_userSign(conn,cur,uid):                #删除用户签到记录
     sql = "delete from user_sign WHERE uid = '%d'" %(uid)
@@ -227,7 +227,7 @@ def select_match(cur):
     a = now.strftime('%Y-%m-%d %H:%M:%S')                       #将datetime类型的日期转换成string类型，主要是为了去掉秒数后的小数点位数
     b = datetime.datetime.strptime(a,'%Y-%m-%d %H:%M:%S')       #再讲string类型的日期转换成datetime类型，主要是为了能够将日期进行加减操作
     c = b - datetime.timedelta(hours=8)
-    print c
+    print (c)
     sql1 = "select team_A_name,team_B_name,match_id,status from `match` WHERE start_play > '%s' " \
            "and leg_name = 'EPL' LIMIT 1" %(c)
     cur.execute(sql1)
@@ -248,7 +248,7 @@ def update_match(conn,cur,match_id,status):                     #更改比赛的
         cur.execute(sql2)
         conn.commit()
     else:
-        print '数据库中该表字段值发生变化，请核对之'
+        print ('数据库中该表字段值发生变化，请核对之')
 
 def delete_point_record(conn,cur,uid):          #删除用户完成观看比赛任务的记录
     sql = "delete from user_point_record WHERE uid = '%d'" %(uid)
@@ -267,20 +267,20 @@ def select_recharge(cur,uid):
     result = cur.fetchall()
     try:
         if len(result) == 0:
-            print '该用户没有充值权限'               #用户没有记录的时候会报错
+            print ('该用户没有充值权限')               #用户没有记录的时候会报错
             return 2
         else:
             result1 = result[0][0]
             if result1 == 1:
-                print '该用户的充值权限已删除，请更改status值'
+                print ('该用户的充值权限已删除，请更改status值')
                 return result1
             elif result1 == 0:
-                print  '该用户已拥有充值权限，且正常状态'
+                print  ('该用户已拥有充值权限，且正常状态')
                 return result1
             else:
-                print '数据库中该表的字段值范围发生变化，请去核对之'
+                print ('数据库中该表的字段值范围发生变化，请去核对之')
     except pymysql.err.OperationalError():
-        print '狗日的又服务器炸了，我丢雷老母'
+        print ('狗日的又服务器炸了，我丢雷老母')
 
 def update_recharge(conn,cur,uid,status):
     if status == 2:
@@ -288,27 +288,27 @@ def update_recharge(conn,cur,uid,status):
               "VALUES (2,'recharge','%d',0,now(),now())" % (uid)            #如果用户没有充值权限记录，增加用户权限
         cur.execute(sql)
         conn.commit()
-        print '新增用户充值权限成功'
+        print ('新增用户充值权限成功')
     elif status == 1:
         sql = "update user_permission set status = 0 WHERE user_id = '%d' and pid = 2"% (uid)       #
         cur.execute(sql)                                            #如果用户有充值权限记录，但是权限状态为已删除，更改其状态为正常
         conn.commit()
-        print '用户充值权限已更改为正常'
-        print ''
+        print ('用户充值权限已更改为正常')
+        print ('')
     elif status == 0:
         sql = "update user_permission set status = 1 WHERE user_id = '%d' and pid = 2" % (uid)
         cur.execute(sql)                                            #如果用户有充值权限记录且状态正常，更改其状态为已删除
         conn.commit()
-        print '用户充值权限更改为已删除'
+        print ('用户充值权限更改为已删除')
     else:
-        print '传入的status值有问题，请在数据库表中查看是否发生变化'
+        print ('传入的status值有问题，请在数据库表中查看是否发生变化')
 
 def delete_subscription(conn,cur,uid):
     sql1 = "select * from user_team_subscription WHERE uid = '%d'"% (uid)
     cur.execute(sql1)
     result = cur.fetchall()
     if len(result) == 0:
-        print '用户未关注任何球队'
+        print ('用户未关注任何球队')
     else:
         sql2 = "delete from user_team_subscription WHERE uid = '%d'"% (uid)
         cur.execute(sql2)
@@ -319,7 +319,7 @@ def select_subscribption(cur,uid):                  #查询用户订阅的球队
     cur.execute(sql)
     result = cur.fetchall()
     if len(result) == 0:
-        print '用户未关注任何球队'
+        print ('用户未关注任何球队')
         return 0
     else:
         return result
@@ -333,7 +333,7 @@ def select_match_subcribption1(cur,teamId):              #这个先留着，现�
         c = cur.execute(sql)
         return c
     except pymysql.err.ProgrammingError:
-        print 'sql语句错误，请核对查询的表或者其他字段是否错误'
+        print ('sql语句错误，请核对查询的表或者其他字段是否错误')
         traceback.print_exc()
 
 def select_match_subcribption(cur,teamId):              #查询用户订阅球队的比赛
@@ -346,7 +346,7 @@ def select_match_subcribption(cur,teamId):              #查询用户订阅球�
         result = cur.fetchall()
         return result
     except pymysql.err.ProgrammingError:
-        print 'sql语句错误，请核对查询的表或者其他字段是否错误'
+        print ('sql语句错误，请核对查询的表或者其他字段是否错误')
         traceback.print_exc()
 
 
@@ -380,7 +380,7 @@ def main_1():
     result = True
     conn, cur = connDB()
     print ("请选择以上四个操作：1、查询记录 2、删除记录 3、更新记录 4、增加记录.(按Q退出程序)")
-    number = raw_input()
+    number = input()
     while (result):
         if (number == 'q' or number == 'Q'):
             print("退出程序中...")
@@ -392,7 +392,7 @@ def main_1():
             try:
                 selectDB(cur, id)
                 print ("查询成功")
-            except Exception, e:
+            except Exception:
                 traceback.print_exc()
             finally:
                 closeDB(conn,cur)
@@ -402,13 +402,13 @@ def main_1():
             try:
                 deleteDB(conn, cur, id)
                 print("删除成功")
-            except pymysql1.err.ProgrammingError as e:
+            except pymysql.err.ProgrammingError as e:
                 print ("删除的记录id在数据库中不存在")
             finally:
                 closeDB(conn,cur)
 
         elif (int(number) == 3):
-            name = raw_input("请输入更新的tag表名字：")
+            name = input("请输入更新的tag表名字：")
             id = input("请输入更新的tag表ID:")
             try:
                 updateDB(conn, cur, name, id)
@@ -418,7 +418,7 @@ def main_1():
             closeDB(conn,cur)
 
         elif (int(number) == 4):
-            sql = raw_input("请输入插入数据的sql语句:")
+            sql = input("请输入插入数据的sql语句:")
             try:
                 insertDB(conn, cur, sql)
                 print ("插入数据成功")
@@ -430,10 +430,10 @@ def main_1():
         else:
             print ("非法输入，将结束进程")
             closeDB(conn, cur)
-            print conn.open    #判断数据库连接状态
+            print (conn.open)    #判断数据库连接状态
             break
         print ("请选择以上四个操作：1、查询记录 2、删除记录 3、更新记录 4、增加记录.(按Q退出程序)")
-        number = raw_input("请选择操作")
+        number = input("请选择操作")
 
 
 if __name__ == "__main__":

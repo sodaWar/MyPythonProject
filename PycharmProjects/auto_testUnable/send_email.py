@@ -23,6 +23,6 @@ msg['Subject'] = Header(mail_title,'utf-8')
 msg['From'] = sender_qq_adr                   #将邮件主题、发件人和收件人添加到MIMEText中
 msg['To'] = receiver_qq_adr
 smtp.sendmail(sender_qq_adr,receiver_qq_adr,msg.as_string())        #邮件正文是一个str，所以需要将MIMEText对象变成str类型，这一个特别注意，是将对象转换成字符串类型的方法
-print 'send ok'
+print ('send ok')
 
 smtp.quit()

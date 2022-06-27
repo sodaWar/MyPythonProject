@@ -16,12 +16,12 @@ def isAppExit():
     terminal_back = os.popen(package_name)  #查询出android设备中已经安装的所有应用包名（包括系统应用和用户应用），并获得返回值（返回值是一个文件对象，格式为fd）
     terminal_result = str(terminal_back.read())   #读取所返回的文件对象内容，并转换为string类型
     f_result = terminal_result.find("com.soka.football")  #find函数找不到时返回-1，找到了则返回查找到字符串的第一个出现的位置
-    print f_result
+    print (f_result)
     if not f_result == -1:
-        print "app is exit"
+        print ("app is exit")
         return 1
     else:
-        print "app not exit"
+        print ("app not exit")
         return 0
 
 
@@ -30,12 +30,12 @@ def isProcessExit():
     terminal_back = os.popen(process_name)   #查询出android设备中系统的内存状况，其中包括进程的包名、PID等信息内容
     terminal_result = str(terminal_back.read())
     f_result = terminal_result.find("com.soka.football")
-    print f_result
+    print (f_result)
     if not f_result == -1:
-        print "Soka Football app is run"
+        print ("Soka Football app is run")
         return 1
     else:
-        print "Soka Football app is not run"
+        print ("Soka Football app is not run")
         return 0
 
 
@@ -53,15 +53,15 @@ def isProcessExit():
 
 
 
-def startActivity(time=[0]):
+def startActivity(time):
     package_name = "com.football.soccerbook"
     activity = "com.soka.football.home.ui.login.activity.SplashActivity"
     comment_name = package_name + '/' + activity
     device.startActivity(component=comment_name)
 
-    new_time = time[0] + 1      #该段代码主要是为了检测是否是第一次打开APP，因此要返回运行该程序的次数
-    time[0] = new_time
-    print time[0]
+    new_time = time + 1      #该段代码主要是为了检测是否是第一次打开APP，因此要返回运行该程序的次数
+    time = new_time
+    print (time)
     mr.sleep(1)
     auto_teach(new_time)
 
@@ -309,26 +309,26 @@ def auto_teach(i):
         easy_device.touch(By.id('id/iv_hint'), md.DOWN_AND_UP)
     else:   #再次打开APP时教学页面不存在了
         easy_device.touch(By.id('id/title_bar_iv_left'), md.DOWN_AND_UP)
-        print "you have complete the teach"
+        print ("you have complete the teach")
 
 
 def runStartApp():
     if isAppExit() == 0:    #如果App不存在，则安装APP并启动
         device.installPackage('/Users/apple/auto_test/formal.apk')
-        startActivity()
+        startActivity(2)
     elif isAppExit() == 1 and isProcessExit() == 1:   #如果App存在且进程已经开启
         os.system("adb shell am force-stop com.soka.football")    #杀掉该进程，再启动APP
         print ('kill the progress success')
-        startActivity()
+        startActivity(2)
     else:
-        startActivity()
+        startActivity(2)
 
 
 def runLogin():
     for i in range(9):
         auto_login(i)
         # print "执行+ %d +测试用例完毕" + i
-        print "execute case and NO:" + str(i)
+        print ("execute case and NO:" + str(i))
 
 
 def main():
@@ -345,12 +345,12 @@ def main():
 
         number = mr.input("enter you number:")
         if number is None:     #判断没有输入数字，直接点确定按钮时的情况
-            print "please input Q and ending the procedure"
+            print ("please input Q and ending the procedure")
         elif not number:
-            print "please input number or input Q  to  ending the procedure"
+            print ("please input number or input Q  to  ending the procedure")
         else:
             nm_first = str(number)
-            print nm_first
+            print (nm_first)
 
             if (nm_first == 'q' or nm_first == 'Q'):
                 print ("procedure is ending....")

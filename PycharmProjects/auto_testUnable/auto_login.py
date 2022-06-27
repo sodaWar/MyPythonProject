@@ -3,7 +3,7 @@ from appium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from appium.webdriver.common.multi_action import MultiAction
 from collections import Counter                                 #使用Counter(列表)的方法时可以需要导入该报
-from test_cm_upgrade import *
+from test_cm2_upgrade import *
 from reptile_request_get import *
 from receive_email import  *
 import unittest
@@ -35,7 +35,7 @@ class AutoTest(unittest.TestCase):
         driver.remove_app("com.football.supergoal")
         driver.install_app("/Users/apple/test2.2.0.apk")
     else:
-        print 'app have installed'
+        print ('app have installed')
 
     time.sleep(3)
     driver.start_activity(start_p, start_a)
@@ -44,11 +44,11 @@ class AutoTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):    #每个测试函数运行前运行，即每个test方法运行前运行一次，setUpClass（cls）是所有test运行前运行，即某个类中所有test方法运行前运行
         #如果运行一个类中的测试用例放，那么setUpClass()方法只运行一次，如果该类中有3个test方法，则setUp()方法运行3次
-        print 'process is set up now'
+        print ('process is set up now')
 
     @classmethod
     def tearDownClass(cls):       #每个测试函数运行完后运行，tearDownClass(cls)所有test运行完后运行一次,记住setUpClass方法定义时必须加@classmethod,而tearDown()方法不用加
-        print "clean the process after it down "
+        print ("clean the process after it down ")
 
 
     #测试用例方法开始处
@@ -71,7 +71,7 @@ class AutoTest(unittest.TestCase):
                 elif len(email) == 13:
                     email = email[:2] + a + email[6:]
                 else:
-                    print '邮箱已到达14位了，请在循环条件中添加'
+                    print ('邮箱已到达14位了，请在循环条件中添加')
         print ("the email is availabe:") + email
         return email
 
@@ -236,8 +236,8 @@ class AutoTest(unittest.TestCase):
     #coinsmall页面
     def test_mall(self):
         uid = self.test_feedback()
-        print uid
-        print isinstance(uid,int)
+        print (uid)
+        print (isinstance(uid,int))
         driver = self.driver
 
         conn, cur = connDB()

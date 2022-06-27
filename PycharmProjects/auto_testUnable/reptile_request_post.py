@@ -11,6 +11,6 @@ delivery_data = json.dumps(values)
 delivery_url = "http://api.test.sokafootball.com:8092/register/email"
 delivery_headers = {"Content-Type": "application/json"}
 r = requests.post(url=delivery_url, data=delivery_data, headers=delivery_headers)
-print r.status_code
-print r.text
-print r.encoding
+print (r.status_code)
+print (r.text)
+print (r.encoding)

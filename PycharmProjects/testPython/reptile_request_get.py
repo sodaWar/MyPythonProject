@@ -5,5 +5,5 @@ re_url = "http://api.test.sokafootball.com:8092/article/fetch"
 r = requests.get(url = re_url,params = values)
 end = r.text
 
-print r.url
-print end
+print (r.url)
+print (end)

@@ -1,32 +1,33 @@
 # -* encoding:utf-8 *-
 from appium import webdriver
-from  test_cm_upgrade import *
+from test_cm2_upgrade import *
 from  reptile_request_get import *
 from receive_email import *
-from Tkinter import *
-import tkMessageBox
+import tkinter
+import tkinter.messagebox
 import time
+from test_cm_upgrade import *
 from collections import Counter
 
 conn,cur = connDB()
-result = select_subscribption(cur,241)
+result = select_subscribption(cur, 241)
 e = len(result)
 s1 = []
 b = []
 for i in range(e):
     s2 = result[i][0]
     s1.append(s2)
-print s1
+print (s1)
 
 for m in range(len(s1)):
     a = select_match_subcribption(cur, s1[m])
     for n in range(len(a)):
         b.append(a[n][1])
-        print b
+        print (b)
     # print a1
 # c =Counter(a1)                                        #显示出列表中所有元素重复的次数，返回值是一个字典，注意要导入Counter包
 s3 = list(set(b))                                      #去除列表中重复的元素
-print len(s3)
+print (len(s3))
     # s3 = s3 + a
     # print s3
 
@@ -69,7 +70,7 @@ print len(s3)
 
 # def printentry():            #弹出输入框并获取其值
 #     print var.get()
-# from Tkinter import *
+# from tkinter import *
 # root=Tk()
 # var=StringVar()
 # Entry(root,textvariable=var).pack() #设置输入框对应的文本变量为var
@@ -77,13 +78,13 @@ print len(s3)
 # root.mainloop()
 
 #
-# from Tkinter import *
+# from tkinter import *
 #
-# from tkMessageBox import *
+# from tkinter.messagebox import *
 #
 #
 # def answer():
-#     showerror("Answer", "Sorry, no answer available")       #弹出对话框的一种方式，用python内置函数Tkinter库来实现
+#     showerror("Answer", "Sorry, no answer available")       #弹出对话框的一种方式，用python内置函数tkinter库来实现
 #
 #
 # def callback():

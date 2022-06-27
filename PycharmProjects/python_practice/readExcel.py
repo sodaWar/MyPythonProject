@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import xlrd
-import sys
 
 def open_excel(file= 'file.xls'):
     try:
         data = xlrd.open_workbook(file)
         return data
-    except Exception,e:
-        print e
+    except Exception as e:
+        print(e)
 
     #根据索引获取Excel表格中的数据   参数:file：Excel文件路径     colnameindex：表头列名所在行的所以  ，by_index：表的索引
 def excel_table_byindex(file= 'file.xls',colnameindex=0,by_index=0):
